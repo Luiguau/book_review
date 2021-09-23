@@ -58,8 +58,8 @@ def insertar(request):
             else:
                 autor = Autor.objects.create(nombre=request.POST['autor'].capitalize())
         book = Libro.objects.create(titulo = request.POST['titulo'], autor = autor)
-        Review.objects.create(usuario = User.objects.get(id=request.session['user_id']), contenido = request.POST['review'], libro = book)
-        return redirect('/libros')
+        Review.objects.create(usuario = User.objects.get(id=request.session['user_id']), contenido = request.POST['review'], libro = book,rating = request.POST['rating'])
+        return redirect('libros')
 
 def recuperar(request):
     reg_user = User.objects.get(id=request.session['user_id'])
